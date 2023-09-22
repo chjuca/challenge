@@ -1,7 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
-import jwt from 'jsonwebtoken';
-
-const secretKey = 'challenge'; 
+import jwt from 'jsonwebtoken'; 
+import { config } from '../config/settings';
 
 export function validateToken(req: Request, res: Response, next: NextFunction) {
   const token = req.header('Authorization')?.split(' ')[1];
@@ -11,7 +10,7 @@ export function validateToken(req: Request, res: Response, next: NextFunction) {
   }
 
   try {
-    const decoded = jwt.verify(token, secretKey);
+    const decoded = jwt.verify(token, config.SECRETKEY );
     // @ts-ignore
     req.user = decoded;
 

@@ -1,8 +1,7 @@
 import { Request, Response } from "express";
 import jwt from 'jsonwebtoken';
 import User, { UserInterface } from "../models/user";
-
-const secretKey = 'challenge';
+import { config } from "../config/settings";
 
 export async function login(req: Request, res: Response) {
     const { email, password } = req.body;
@@ -14,7 +13,7 @@ export async function login(req: Request, res: Response) {
         return res.status(401).json({ msg: 'Credenciales inválidas. Por favor, verifica tu correo y contraseña.' });
       }
   
-      const token = jwt.sign({ id: user.id, email: user.email }, secretKey, { expiresIn: '1h' });
+      const token = jwt.sign({ id: user.id, email: user.email }, config.SECRETKEY , { expiresIn: '1h' });
   
       res.json({ token });
     } catch (error) {

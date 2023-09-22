@@ -1,12 +1,13 @@
 import { Sequelize } from 'sequelize';
+import { config } from '../config/settings';
 
 export const sequelize = new Sequelize(
 
-  process.env.POSTGRES_DB || "challenge-back",
-  process.env.POSTGRES_USER || "postgres",
-  process.env.POSTGRES_PASS || "postgres",
+  process.env.POSTGRES_DB || config.POSTGRES_DB,
+  process.env.POSTGRES_USER || config.POSTGRES_USER,
+  process.env.POSTGRES_PASS || config.POSTGRES_PASS,
   {
-    host: process.env.POSTGRES_HOST || "localhost",
+    host: process.env.POSTGRES_HOST || config.POSTGRES_HOST,
     dialect: "postgres",
     port: 5432
   }
