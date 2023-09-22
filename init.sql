@@ -9,8 +9,8 @@ CREATE TABLE IF NOT EXISTS tasks (
     title VARCHAR(255) NOT NULL,
     description TEXT,
     state VARCHAR(20) NOT NULL default 'to_do',
-    users_id INT NOT NULL,
-    FOREIGN KEY (users_id) REFERENCES users(id)
+    user_id INT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
 INSERT INTO users (email, password)
