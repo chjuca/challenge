@@ -10,7 +10,7 @@ export function validateToken(req: Request, res: Response, next: NextFunction) {
   }
 
   try {
-    const decoded = jwt.verify(token, config.SECRETKEY );
+    const decoded = jwt.verify(token, config.SECRET_KEY );
     // @ts-ignore
     req.user = decoded;
 
