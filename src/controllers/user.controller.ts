@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import jwt from 'jsonwebtoken';
-import User from "../models/user";
+import User, { UserInterface } from "../models/user";
 
 const secretKey = 'challenge';
 
@@ -23,5 +23,36 @@ export async function login(req: Request, res: Response) {
     }
 }
   
+
+export async function createUser(req: Request, res: Response) {
+  const { email, password} = req.body
+
+  const user: UserInterface = {email, password}
+
+  try{
+      const newUser = await createUserDB(user);
+      return res.status(200).json({
+              ok: true,
+              data: newUser
+          })
+  } catch(e){
+      console.log(e)
+      return res.status(500).json({
+          ok: false,
+          data: []
+      })
+  }
+}  
+
+
+async function createUserDB(user: UserInterface): Promise<User>{
+  const {email, password} = user
+  const newUser = await User.create({
+      email, 
+      password
+    });
+
+  return newUser;
+}
   
   
