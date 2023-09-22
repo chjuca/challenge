@@ -4,9 +4,12 @@ import { json } from 'express';
 import morgan from 'morgan';
 // @ts-ignore
 import cors from 'cors';
+import { taskRouter } from './routes/taks';
 
 export const app = express();
 
 // Middelwares
 app.use(cors())
 app.use(morgan('dev'));
+
+app.use('/api/tasks', taskRouter)
