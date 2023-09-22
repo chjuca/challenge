@@ -2,6 +2,20 @@ import { DataTypes, Model } from 'sequelize';
 import { sequelize } from '../database/database'; 
 import User from './user';
 
+enum StateEnum {
+  TODO = 'to_do',
+  PROGRESS = 'in_progress',
+  COMPLETED = 'completed',
+}
+export interface TaskInterface {
+  id?: number
+  title: string
+  description: string | null;
+  state?: 'to_do' | 'in_progress' | 'completed';
+  user_id: number;
+}
+
+
 class Task extends Model {
   public id!: number;
   public title!: string;
@@ -21,8 +35,14 @@ Task.init({
     allowNull: true,
   },
   state: {
-    type: DataTypes.ENUM('to_do', 'in_progress', 'completed'),
+    type: DataTypes.ENUM(...Object.values(StateEnum)),
     allowNull: false,
+    validate: {
+      isIn: {
+        args: [Object.values(StateEnum)],
+        msg: 'Estado no válido.',
+      },
+    },
   },
   user_id: {
     type: DataTypes.INTEGER,
