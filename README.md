@@ -31,3 +31,54 @@ export  const  config  = {
 		- Cuando tengamos la carpeta `./node_modules` regresamos a la carpeta raiz usando el comando `cd ..`
 6. Levantamos el proyecto de forma local ejecutando el comando `npm run serve`
 7. Se depe presentar en consola un mensaje con la URI donde levantamos el proyecto `http://localhost:5000/´
+
+## Guia para el uso de endpoints:
+A continucion detallo el uso correcto de los endpoints, en cada endpoint te dejare un ejemplo del body de la consuta en caso se necesite 
+### Login
+
+Permite obtener un token para la realizacion de las otra consultas (necesita body)
+	**POST**: http://localhost:5000/api/login
+```
+{
+	"email":"ejemplo@email.com",
+	"password":"contraseña123"
+}
+```
+### Crear Usuario
+Permite crear un nuevo usuario (necesita body)
+** POST**: http://localhost:5000/api/users
+```
+{
+	"email":"ejemplo3@email.com",
+	"password":"contraseña1263"
+}
+```
+### Crear una nueva tarea con un título, descripción.
+Permite crear una nueva tarea (user_id)  (necesita body)
+**POST**: http://localhost:5000/api/tasks/<user_id>
+```
+{
+	"title":"Nueva Tarea",
+	"description":"Description nueva tarea"
+	"user_id":"2"
+}
+```
+### Obtener todas las tareas
+Permite obtener todas las tareas guardadas en la base de datos
+**GET**: http://localhost:5000/api/tasks/state
+### Obtener tareas filtradas por estado.
+Permite obtener las tareas guardadas en base filtradas por el estado  (necesita body)
+```
+{
+	"state": 'to_do'  |  'in_progress'  |  'completed'
+}
+```
+### Marcar una tarea como completada
+Permite cambiar el estado de una tarea
+**PUT**: http://localhost:5000/api/tasks/<task_id>
+```
+{
+	"state":"to_do"
+}
+```
+

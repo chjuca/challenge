@@ -1,6 +1,6 @@
 import Router from 'express';
 import { createUser } from '../controllers/user.controller';
 
-export const taskRouter = Router();
+export const userRouter = Router();
 
-taskRouter.post('/', createUser)
+userRouter.post('/', createUser)

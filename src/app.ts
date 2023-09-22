@@ -6,6 +6,7 @@ import morgan from 'morgan';
 import cors from 'cors';
 import { taskRouter } from './routes/taks';
 import { login } from './controllers/user.controller';
+import { userRouter } from './routes/user';
 
 export const app = express();
 
@@ -16,4 +17,5 @@ app.use(express.json({limit: '50mb'}));
 app.use(express.urlencoded({limit: '50mb'}));  
 
 app.use('/api/tasks', taskRouter)
+app.use('/api/users', userRouter)
 app.use('/api/login', login)
