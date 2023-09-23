@@ -1,4 +1,4 @@
-import { DataTypes, Model } from 'sequelize';
+import { DataTypes } from 'sequelize';
 import { sequelize } from '../database/database'; 
 import User from './user';
 
@@ -15,17 +15,8 @@ export interface TaskInterface {
   user_id: number;
 }
 
-
-class Task extends Model {
-  public id!: number;
-  public title!: string;
-  public description!: string | null;
-  public state!: 'to_do ' | 'in_progress' | 'completed';
-  public user_id!: number;
-}
-
 // Inicializa el modelo con los atributos
-Task.init({
+export const Task = sequelize.define('task', {
   title: {
     type: DataTypes.STRING,
     allowNull: false,
@@ -49,8 +40,6 @@ Task.init({
     allowNull: false,
   },
 }, {
-  sequelize,
-  modelName: 'task',
   timestamps: false,
 });
 

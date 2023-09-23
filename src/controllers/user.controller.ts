@@ -9,10 +9,11 @@ export async function login(req: Request, res: Response) {
     try {
       const user = await User.findOne({ where: { email } });
   
+      // @ts-ignore
       if (!user || user.password !== password) {
         return res.status(401).json({ msg: 'Credenciales inválidas. Por favor, verifica tu correo y contraseña.' });
       }
-  
+      // @ts-ignore
       const token = jwt.sign({ id: user.id, email: user.email }, process.env.SECRET_KEY ||  config.SECRET_KEY , { expiresIn: '1h' });
   
       res.json({ token });
@@ -44,7 +45,7 @@ export async function createUser(req: Request, res: Response) {
 }  
 
 
-async function createUserDB(user: UserInterface): Promise<User>{
+async function createUserDB(user: UserInterface): Promise<any>{
   const {email, password} = user
   const newUser = await User.create({
       email, 

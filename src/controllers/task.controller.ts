@@ -75,12 +75,12 @@ export async function updateTaskState(req: Request, res: Response) {
     }
 }  
 
-async function getAllTasksDB(): Promise<Task[]>{
+async function getAllTasksDB(): Promise<any[]>{
     const tasks = await Task.findAll();
     return tasks;
 }
 
-async function getAllTaskByStateDB(state: string): Promise<Task[]>{
+async function getAllTaskByStateDB(state: string): Promise<any[]>{
     const tasks = await Task.findAll({
         where: {
             state
@@ -89,7 +89,7 @@ async function getAllTaskByStateDB(state: string): Promise<Task[]>{
     return tasks;
 }
 
-async function createTaskDB(task: TaskInterface): Promise<Task>{
+async function createTaskDB(task: TaskInterface): Promise<any>{
     const {title, description, state, user_id} = task
     const newTask = await Task.create({
         title,

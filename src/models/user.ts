@@ -1,4 +1,4 @@
-import { DataTypes, Model } from 'sequelize';
+import { DataTypes } from 'sequelize';
 import { sequelize } from '../database/database';
 
 export interface UserInterface {
@@ -7,14 +7,8 @@ export interface UserInterface {
   password: string;
 
 }
-class User extends Model {
-  public id!: number;
-  public email!: string;
-  public password!: string;
 
-}
-
-User.init({
+export const User = sequelize.define('users', {
   email: {
     type: DataTypes.STRING,
     allowNull: false,
@@ -25,8 +19,6 @@ User.init({
     allowNull: false,
   },
 }, {
-  sequelize,
-  modelName: 'users',
   timestamps: false,
 });
 
