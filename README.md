@@ -29,7 +29,7 @@ export  const  config  = {
 5. Una vez instalado, de procede a reconstruir el archivo `./node_modules` de la siguiente manera:
 		- En la carpeta raiz del proyecto ejecutamos el comando `npm install`
 		- Cuando tengamos la carpeta `./node_modules` regresamos a la carpeta raiz usando el comando `cd ..`
-6. Levantamos el proyecto de forma local ejecutando el comando `npm run serve`
+6. Levantamos el proyecto de forma local ejecutando el comando `npm run start`
 7. Se depe presentar en consola un mensaje con la URI donde levantamos el proyecto `http://localhost:5000/´
 
 ## Guia para el uso de endpoints:
